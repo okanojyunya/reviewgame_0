@@ -45,25 +45,28 @@ public class PlayerController : MonoBehaviour
         float moveV = Input.GetAxis("Vertical");
         dir = new Vector3(moveH, 0, moveV);
         dir *= moveSpeed;
-        ////ジャンプ処理
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    if (isJumped)
-        //    {
-        //        Jump();
-        //    }
-        //}
+        //ジャンプ処理
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (isJumped)
+            {
+                Jump();
+                isJumped = false;
+            }
+        }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    isJumped = true;
-    //}
-
-    //void Jump()
-    //{
-    //    Vector3 velocity = rb.velocity;
-    //    velocity.y = jumpPower;
-    //    rb.velocity = velocity;
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        isJumped = true;
+    }
+/// <summary>
+/// プレイヤーのジャンプ処理
+/// </summary>
+    void Jump()
+    {
+        Vector3 velocity = rb.velocity;
+        velocity.y = jumpPower;
+        rb.velocity = velocity;
+    }
 }
