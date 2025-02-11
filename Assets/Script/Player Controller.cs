@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     Vector3 dir;
     Rigidbody rb;
     [SerializeField] float moveSpeed = 1.0f;//プレイヤーのスピード
-    [SerializeField] float turnSpeed = 1.0f;//回転速度
     [SerializeField] float jumpPower = 1.0f;//ジャンプ力
     /// <summary>プレイヤーが動いたかどうかのフラグtrueだったら時を動かす</summary>
     public bool isMoved = false;
@@ -65,13 +64,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        //ステージが出来たらコメントアウトを消す
-        //if (collision.gameObject.CompareTag("Ground"))
-        //{
-            isJumped = true;
-        //}
+        isJumped = true;
     }
     /// <summary>
     /// プレイヤーのジャンプ処理
