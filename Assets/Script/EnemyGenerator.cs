@@ -14,7 +14,7 @@ public class EnemyGenerator : MonoBehaviour
     /// <summary>Œo‰ßŠÔ</summary>
     float time;
 
-    void Move()
+    public void Move()
     {
         time = Time.deltaTime;
         if (time > interval)

@@ -63,7 +63,7 @@ public class GameManegarController : MonoBehaviour
     /// <summary>
     /// ゲームオーバーの条件が揃ったら実行する処理
     /// </summary>
-    void GameOver()
+    public void GameOver()
     {
         onGameOver.Invoke();
         Debug.Log("aa");
