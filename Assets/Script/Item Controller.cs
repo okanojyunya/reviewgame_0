@@ -13,6 +13,7 @@ public class ItemController : MonoBehaviour
     public bool isGameOver = false;
     Rigidbody rb;
     Vector3 velocity;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,17 +30,18 @@ public class ItemController : MonoBehaviour
         velocity = rb.velocity;
         rb.Sleep();
     }
-    
+
     void OnCollisionEnter(Collision collision)
     {
-        //ゲームクリア条件地面に地面に触れる前にプレイヤーに当たること
-        if (GameObject.Find("Player Body") && isGameOver == false)
+        // 衝突相手のタグを確認
+        if (collision.gameObject.CompareTag("Player") && isGameOver == false)
         {
+            // プレイヤーと接触した場合
             isGameClear = true;
         }
-        //ゲームオーバー条件地面に触れたら
-        if (GameObject.FindWithTag("Ground"))
+        else if (collision.gameObject.CompareTag("Ground"))
         {
+            // 地面と接触した場合
             isGameOver = true;
         }
     }
