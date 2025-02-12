@@ -11,8 +11,9 @@ public class EnemyController : MonoBehaviour
     public bool isPlayer = false;
     /// <summary>スピード</summary>
     [SerializeField] float speed = 0f;
-    float speedSave;
     Rigidbody rb;
+    /// <summary>リスポンする場所</summary>
+    [SerializeField] GameObject reponPos;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        //プレイヤーに当たったらフラグをtrueにする
         if (GameObject.Find("Player Body"))
         {
             isPlayer = true;
@@ -33,7 +35,11 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        //Wallに当たったら最初の位置に移動する
+        if (GameObject.Find("Wall"))
+        {
+            this.gameObject.transform.position = reponPos.transform.position;
+        }
     }
     public void Move()
     {
